@@ -1,0 +1,6 @@
+apiVersion: v2
+name: resource-management-chart
+description: A Helm chart for managing resource management services including backend, frontend, and event processor.
+type: application
+version: 0.1.0
+appVersion: "1.0"

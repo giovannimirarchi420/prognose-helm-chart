@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-fe-config # Corrected name templating
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "resource-management-chart.name" . }}
+data:
+  # Frontend Configuration
+  FRONTEND_API_URL: "https://{{ .Values.be.ingress.host }}{{ .Values.be.ingress.path }}"

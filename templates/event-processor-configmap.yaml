@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-event-processor-config
+  namespace: {{ .Values.namespace }}
+data:
+  # Application Configuration
+  SERVER_PORT: "{{ .Values.eventProcessor.serverPort }}"
+  
+  # Database Configuration
+  DB_URL: "{{ .Values.eventProcessor.dbUrl }}"
+  
+  # Keycloak Configuration  
+  KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.keycloakAuthServerUrl | quote }}
+  KEYCLOAK_REALM: {{ .Values.be.keycloakRealm | quote }}

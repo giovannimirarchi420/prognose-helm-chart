@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-be-ingress
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "resource-management-chart.name" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: {{ .Values.be.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.be.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-be-service
+                port:
+                  number: 8080
