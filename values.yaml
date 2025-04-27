@@ -5,6 +5,7 @@ be:
   image:
     repository: docker.io/g420/resource-management-backend
     tag: 1.5.0
+  containerPort: 8080
   config:
     dbUrl: "<db_url>" #Only Oracle DB is supported right now, more configuration will be added in the future
     keycloakAuthServerUrl: "<keycloak_auth_server_url>"
@@ -53,10 +54,8 @@ eventProcessor:
   replicaCount: 1
   image:
     repository: docker.io/g420/reservation-event-processor
-    tag: 1.0.0
-  service:
-    type: ClusterIP
-    port: 8081
+    tag: 0.0.2
+  containerPort: 8081
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little

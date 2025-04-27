@@ -5,11 +5,11 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   # Application Configuration
-  SERVER_PORT: "{{ .Values.eventProcessor.serverPort }}"
+  SERVER_PORT: {{ .Values.eventProcessor.containerPort }}
   
   # Database Configuration
-  DB_URL: "{{ .Values.eventProcessor.dbUrl }}"
+  DB_URL: {{ .Values.be.config.dbUrl | quote }}
   
   # Keycloak Configuration  
-  KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.keycloakAuthServerUrl | quote }}
-  KEYCLOAK_REALM: {{ .Values.be.keycloakRealm | quote }}
+  KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}
+  KEYCLOAK_REALM: {{ .Values.be.config.keycloakRealm | quote }}

@@ -7,14 +7,14 @@ metadata:
     app: {{ include "resource-management-chart.name" . }}
 data:
   # Application Configuration
-  SERVER_PORT: 8080
+  SERVER_PORT: {{ .Values.be.containerPort }}
   
   # Database Configuration
-  DB_URL: {{ .Values.be.dbUrl | quote }}
+  DB_URL: {{ .Values.be.config.dbUrl | quote }}
   
   # Keycloak Configuration  
-  KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.keycloakAuthServerUrl | quote }}
-  KEYCLOAK_REALM: {{ .Values.be.keycloakRealm | quote }}
+  KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}
+  KEYCLOAK_REALM: {{ .Values.be.config.keycloakRealm | quote }}
   
   # CORS Configuration
   FRONTEND_APP_URL: "https://{{ .Values.fe.ingress.host }}/"
