@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   # Application Configuration
-  SERVER_PORT: {{ .Values.eventProcessor.containerPort }}
+  SERVER_PORT: {{ .Values.be.containerPort | quote }}
   
   DB_URL: {{ include "resource-management.database.url" . }}
   

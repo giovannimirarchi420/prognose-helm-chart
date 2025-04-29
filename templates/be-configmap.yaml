@@ -7,7 +7,7 @@ metadata:
     {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
 data:
   # Application Configuration
-  SERVER_PORT: {{ .Values.be.containerPort }}
+  SERVER_PORT: {{ .Values.be.containerPort | quote }}
   
   # Database Configuration
   DB_TYPE: {{ .Values.be.config.databaseType | quote }}
