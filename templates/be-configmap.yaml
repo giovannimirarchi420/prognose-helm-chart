@@ -4,13 +4,14 @@ metadata:
   name: {{ .Release.Name }}-be-config
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ include "resource-management-chart.name" . }}
+    {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
 data:
   # Application Configuration
   SERVER_PORT: {{ .Values.be.containerPort }}
   
   # Database Configuration
-  DB_URL: {{ .Values.be.config.dbUrl | quote }}
+  DB_TYPE: {{ .Values.be.config.databaseType | quote }}
+  DB_URL: {{ include "resource-management.database.url" . }}
   
   # Keycloak Configuration  
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}

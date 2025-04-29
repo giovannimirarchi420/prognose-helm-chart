@@ -1,35 +1,60 @@
 {{/*
-Expand the name of the chart
+Helper to generate the database URL.
 */}}
-{{- define "resource-management-chart.name" -}}
-{{- .Chart.Name | quote -}}
+{{- define "resource-management.database.url" -}}
+{{- if .Values.postgresql.enabled -}}
+{{- printf "jdbc:postgresql://%s-postgres-svc:%d/%s" .Release.Name 5432 .Values.postgresql.auth.database -}} # Changed from include "resource-management.fullname"
+{{- else -}}
+{{- .Values.be.config.dbUrl | quote -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
-Expand the chart version
+Helper to generate the database username.
 */}}
-{{- define "resource-management-chart.version" -}}
-{{- .Chart.Version | quote -}}
+{{- define "resource-management.database.username" -}}
+{{- if .Values.postgresql.enabled -}}
+{{- .Values.postgresql.auth.username | quote -}}
+{{- else -}}
+{{- .Values.be.secrets.dbUser | quote -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
-Expand the full name of the resource
+Helper to generate the database password.
 */}}
-{{- define "resource-management-chart.fullname" -}}
-{{- printf "%s-%s" .Release.Name (include "resource-management-chart.name" .) | trunc 63 | trimSuffix "-" -}}
+{{- define "resource-management.database.password" -}}
+{{- if .Values.postgresql.enabled -}}
+{{- .Values.postgresql.auth.password | quote -}}
+{{- else -}}
+{{- .Values.be.secrets.dbPassword | quote -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
-Common labels for all resources
+Common labels
+Usage:
+{{ include "resource-management.labels" (dict "context" . "component" "backend") }}
 */}}
-{{- define "resource-management-chart.labels" -}}
-app: {{ include "resource-management-chart.name" . }}
-release: {{ .Release.Name }}
+{{- define "resource-management.labels" -}}
+helm.sh/chart: {{ printf "%s-%s" .context.Chart.Name .context.Chart.Version | quote }}
+app.kubernetes.io/name: {{ .context.Chart.Name }}
+app.kubernetes.io/instance: {{ .context.Release.Name }}
+app.kubernetes.io/managed-by: {{ .context.Release.Service }}
+{{- if .component }}
+app.kubernetes.io/component: {{ .component }}
+{{- end }}
 {{- end -}}
 
 {{/*
-Get the value of a key from values.yaml with a default fallback
+Selector labels
+Usage:
+{{ include "resource-management.selectorLabels" (dict "context" . "component" "backend") }}
 */}}
-{{- define "resource-management-chart.getValue" -}}
-{{- default .Values.default .Values.getValue -}}
+{{- define "resource-management.selectorLabels" -}}
+app.kubernetes.io/name: {{ .context.Chart.Name }}
+app.kubernetes.io/instance: {{ .context.Release.Name }}
+{{- if .component }}
+app.kubernetes.io/component: {{ .component }}
+{{- end }}
 {{- end -}}

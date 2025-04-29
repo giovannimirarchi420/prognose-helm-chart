@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-fe-ingress
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ include "resource-management-chart.name" . }}
+    {{- include "resource-management.labels" (dict "context" . "component" "frontend") | nindent 4 }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:

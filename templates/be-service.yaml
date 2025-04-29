@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-be-service
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ include "resource-management-chart.name" . }}
+    {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
 spec:
   type: ClusterIP
   ports:
@@ -13,5 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ include "resource-management-chart.name" . }}
-    component: backend
+    {{- include "resource-management.selectorLabels" (dict "context" . "component" "backend") | nindent 4 }}
