@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-postgres
+  namespace: {{ .Values.namespace }}
   labels:
     {{- include "resource-management.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
 spec:
@@ -19,22 +20,13 @@ spec:
         - name: postgresql
           image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
           imagePullPolicy: IfNotPresent
+          
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-postgres-secret
+            - configMapRef:
+                name: {{ .Release.Name }}-postgres-config
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-postgres-secret
-                  key: POSTGRES_USER
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-postgres-secret
-                  key: POSTGRES_PASSWORD
-            - name: POSTGRES_DB # This sets the default database name
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-postgres-secret
-                  key: POSTGRES_DB
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
           ports:
@@ -50,26 +42,18 @@ spec:
           readinessProbe:
             exec:
               command:
-                - pg_isready
-                - -U
-                - $(POSTGRES_USER)
-                - -d
-                - $(POSTGRES_DB)
-                - -h
-                - localhost
+                - sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" -h localhost
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 2
           livenessProbe:
             exec:
               command:
-                - pg_isready
-                - -U
-                - $(POSTGRES_USER)
-                - -d
-                - $(POSTGRES_DB)
-                - -h
-                - localhost
+                - sh
+                - -c
+                - exec pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" -h localhost
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5

@@ -82,7 +82,7 @@ postgresql:
   enabled: true # Set to true to deploy PostgreSQL alongside the application
   image:
     repository: postgres
-    tag: "13" # Specify desired PostgreSQL version
+    tag: "15-alpine" # Specify desired PostgreSQL version
   auth:
     username: <base_64_db_username>
     password: <base_64_db_password>

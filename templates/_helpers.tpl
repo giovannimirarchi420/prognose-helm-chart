@@ -3,7 +3,7 @@ Helper to generate the database URL.
 */}}
 {{- define "resource-management.database.url" -}}
 {{- if .Values.postgresql.enabled -}}
-{{- printf "jdbc:postgresql://%s-postgres-svc:%d/%s" .Release.Name 5432 .Values.postgresql.auth.database -}}
+{{- printf "jdbc:postgresql://%s-postgres-service:%d/%s" .Release.Name 5432 .Values.postgresql.auth.database -}}
 {{- else -}}
 {{- .Values.be.config.dbUrl | quote -}}
 {{- end -}}
