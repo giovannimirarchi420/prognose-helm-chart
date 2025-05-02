@@ -4,12 +4,13 @@ be:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-backend
-    tag: 1.6.2-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
+    tag: 1.6.5-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
   containerPort: 8080
   config:
     
-    # Provide the JDBC URL suitable for the selected image type.
-    
+    # If using PostgreSQL, use the -postgresql image
+    # If using Oracle DB, use the -oracle image
+
     # Specify dbUrl only if postgresql.enabled is set to false, as the application will not deploy its own PostgreSQL instance.
     # dbUrl: "<db_url>" # Example Oracle: jdbc:oracle:thin:@//host:port/service_name, 
                         # Example Postgres: jdbc:postgresql://host:port/database
@@ -43,7 +44,7 @@ fe:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-frontend
-    tag: 1.4.0
+    tag: 1.4.2 # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   ingress:
     host: ingress.hostname.com
   resources: {}
@@ -62,7 +63,7 @@ eventProcessor:
   replicaCount: 1
   image:
     repository: docker.io/g420/reservation-event-processor
-    tag: 0.0.2 
+    tag: 0.0.6-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
   containerPort: 8081
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
