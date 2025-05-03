@@ -12,3 +12,4 @@ data:
   # Keycloak Configuration  
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}
   KEYCLOAK_REALM: {{ .Values.be.config.keycloakRealm | quote }}
+  KEYCLOAK_CLIENT_ID: {{ .Values.be.config.keycloakClientId | quote }}

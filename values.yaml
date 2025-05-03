@@ -4,7 +4,7 @@ be:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-backend
-    tag: 1.6.5-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
+    tag: 1.7.0-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
   containerPort: 8080
   config:
     
@@ -17,14 +17,13 @@ be:
     
     keycloakAuthServerUrl: "<keycloak_auth_server_url>"
     keycloakRealm: "<keycloak_realm_name>"
+    keycloakClientId: "<keycloak_be_client_id>"
   secrets:
     
     # Provide dbUser and dbPassword only if postgresql.enabled is set to false, as the application will not deploy its own PostgreSQL instance.
-    # dbUser: <base_64_db_username>
-    # dbPassword: <base_64_db_password>
-    keycloakClientSecret: <base_64_keycloak_client_secret>
-    keycloakAdminUser: <base_64_keycloak_admin_user>
-    keycloakAdminPassword: <base_64_keycloak_admin_password>
+    # dbUser: <db_username>
+    # dbPassword: <db_password>
+    keycloakClientSecret: <keycloak_client_secret>
   ingress:
     host: ingress.hostname.com
     path: /api
@@ -63,8 +62,12 @@ eventProcessor:
   replicaCount: 1
   image:
     repository: docker.io/g420/reservation-event-processor
-    tag: 0.0.6-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
+    tag: 0.1.0-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
   containerPort: 8081
+  config:
+    keycloakClientId: "<keycloak_event_processor_client_id>"
+  secrets:
+    keycloakClientSecret: <keycloak_client_secret> 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -85,8 +88,8 @@ postgresql:
     repository: postgres
     tag: "15-alpine" # Specify desired PostgreSQL version
   auth:
-    username: <base_64_db_username>
-    password: <base_64_db_password>
+    username: <db_username>
+    password: <db_password>
     database: "reservationdb" # Default database name
   persistence:
     enabled: true

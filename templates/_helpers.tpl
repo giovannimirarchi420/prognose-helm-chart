@@ -14,9 +14,9 @@ Helper to generate the database username.
 */}}
 {{- define "resource-management.database.username" -}}
 {{- if .Values.postgresql.enabled -}}
-{{- .Values.postgresql.auth.username | quote -}}
+{{- .Values.postgresql.auth.username | b64enc | quote -}}
 {{- else -}}
-{{- .Values.be.secrets.dbUser | quote -}}
+{{- .Values.be.secrets.dbUser | b64enc | quote -}}
 {{- end -}}
 {{- end -}}
 
@@ -25,9 +25,9 @@ Helper to generate the database password.
 */}}
 {{- define "resource-management.database.password" -}}
 {{- if .Values.postgresql.enabled -}}
-{{- .Values.postgresql.auth.password | quote -}}
+{{- .Values.postgresql.auth.password | b64enc | quote -}}
 {{- else -}}
-{{- .Values.be.secrets.dbPassword | quote -}}
+{{- .Values.be.secrets.dbPassword | b64enc | quote -}}
 {{- end -}}
 {{- end -}}
 
