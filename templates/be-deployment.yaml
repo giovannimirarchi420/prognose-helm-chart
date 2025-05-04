@@ -20,6 +20,22 @@ spec:
           image: "{{ .Values.be.image.repository }}:{{ .Values.be.image.tag }}"
           ports:
             - containerPort: {{ .Values.be.containerPort }}
+          readinessProbe:
+            httpGet:
+              path: /api/actuator/health/readiness
+              port: {{ .Values.be.containerPort }}
+            initialDelaySeconds: 70
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /api/actuator/health/liveness
+              port: {{ .Values.be.containerPort }}
+            initialDelaySeconds: 90
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-be-config

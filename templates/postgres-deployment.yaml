@@ -57,6 +57,8 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
+          resources:
+            {{- toYaml .Values.postgresql.resources | nindent 12 }}
       {{- if .Values.postgresql.persistence.enabled }}
       volumes:
         - name: postgres-data

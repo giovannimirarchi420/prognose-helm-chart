@@ -20,6 +20,22 @@ spec:
           image: "{{ .Values.eventProcessor.image.repository }}:{{ .Values.eventProcessor.image.tag }}"
           ports:
             - containerPort: {{ .Values.eventProcessor.containerPort }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: {{ .Values.eventProcessor.containerPort }}
+            initialDelaySeconds: 70
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: {{ .Values.eventProcessor.containerPort }}
+            initialDelaySeconds: 90
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-event-processor-config
