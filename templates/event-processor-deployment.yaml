@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-event-processor
-  namespace: {{ .Values.namespace }}
   labels:
     {{- include "resource-management.labels" (dict "context" . "component" "event-processor") | nindent 4 }}
 spec:

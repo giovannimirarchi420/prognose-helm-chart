@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-be-ingress
-  namespace: {{ .Values.namespace }}
   labels:
     {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
   annotations:

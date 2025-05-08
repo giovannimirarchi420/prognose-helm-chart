@@ -1,5 +1,4 @@
 app: resource-management
-namespace: resource-management
 be:
   replicaCount: 1
   image:

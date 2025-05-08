@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-postgres
-  namespace: {{ .Values.namespace }}
   labels:
     {{- include "resource-management.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
 spec:
