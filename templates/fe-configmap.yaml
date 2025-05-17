@@ -8,5 +8,5 @@ data:
   REACT_APP_API_URL: "https://{{ .Values.be.ingress.host }}{{ .Values.be.ingress.path }}"
   REACT_APP_KEYCLOAK_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}
   REACT_APP_KEYCLOAK_REALM: {{ .Values.be.config.keycloakRealm | quote }}
-  REACT_APP_KEYCLOAK_CLIENT_ID: "{{ .Values.be.config.keycloakRealm }}-app"
+  REACT_APP_KEYCLOAK_CLIENT_ID: {{ .Values.fe.config.keycloakClientId | quote }}
   NODE_ENV: "production"

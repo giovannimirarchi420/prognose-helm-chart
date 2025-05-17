@@ -5,16 +5,21 @@ metadata:
   labels:
     {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
+  ingressClassName: nginx-external
   rules:
     - host: {{ .Values.be.ingress.host }}
       http:
         paths:
-          - path: {{ .Values.be.ingress.path }}
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: {{ .Release.Name }}-be-service
                 port:
-                  number: 8080
+                  number: 80
+            path: {{ .Values.be.ingress.path }}
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.be.ingress.host }}
+      secretName: un-qualche-nome-che-verra-creato #TODO: change this to a more meaningful name
