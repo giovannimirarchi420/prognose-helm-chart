@@ -17,8 +17,6 @@ spec:
                 name: {{ .Release.Name }}-fe-service
                 port:
                   number: 80
-            path: /path
-            pathType: Prefix
   tls:
     - hosts:
         - {{ .Values.fe.ingress.host }}
