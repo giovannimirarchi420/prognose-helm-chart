@@ -22,4 +22,4 @@ spec:
   tls:
     - hosts:
         - {{ .Values.fe.ingress.host }}
-      secretName: un-qualche-nome-che-verra-creato #TODO: change this to a more meaningful name
+      secretName: resource-management-fe-ingress-tls
