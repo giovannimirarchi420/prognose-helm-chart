@@ -14,7 +14,7 @@ be:
     # dbUrl: "<db_url>" # Example Oracle: jdbc:oracle:thin:@//host:port/service_name, 
                         # Example Postgres: jdbc:postgresql://host:port/database
     
-    keycloakAuthServerUrl: https://auth.crownlabs.polito.it
+    keycloakAuthServerUrl: https://auth.crownlabs.polito.it/auth
     keycloakRealm: resource-management
     keycloakClientId: resource-management-app
   secrets:
