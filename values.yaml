@@ -44,7 +44,7 @@ fe:
     repository: docker.io/g420/resource-management-frontend
     tag: 1.4.4 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
-    keycloakClientId: resource-management-app
+    keycloakClientId: resource-management-fe
   ingress:
     host: resource-management.crownlabs.polito.it
   resources: {}
