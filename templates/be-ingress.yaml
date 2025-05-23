@@ -6,6 +6,7 @@ metadata:
     {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/custom-http-errors: "418"
 spec:
   ingressClassName: nginx-external
   rules:
