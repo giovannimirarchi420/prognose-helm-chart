@@ -3,7 +3,7 @@ be:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-backend
-    tag: 1.8.24-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
+    tag: 1.8.25-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
   containerPort: 8080
   config:
     
@@ -42,7 +42,7 @@ fe:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-frontend
-    tag: 1.4.5 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
+    tag: 1.4.6 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
     keycloakClientId: resource-management-fe
   ingress:
