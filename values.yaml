@@ -42,7 +42,7 @@ fe:
   replicaCount: 1
   image:
     repository: docker.io/g420/resource-management-frontend
-    tag: 1.4.7 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
+    tag: 1.4.8 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
     keycloakClientId: resource-management-fe
   ingress:
