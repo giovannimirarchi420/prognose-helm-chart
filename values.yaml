@@ -19,7 +19,7 @@ be:
     # Provide dbUser and dbPassword only if postgresql.enabled is set to false, as the application will not deploy its own PostgreSQL instance.
     # dbUser: <db_username>
     # dbPassword: <db_password>
-    keycloakClientSecret: PxiLns5U3gGkrzRI2jPs8nJegE4u4dds
+    keycloakClientSecret: <keycloak_client_secret>
   ingress:
     host: resource-management.crownlabs.polito.it
     path: /api
@@ -63,7 +63,7 @@ eventProcessor:
   config:
     keycloakClientId: resource-management-app
   secrets:
-    keycloakClientSecret: PxiLns5U3gGkrzRI2jPs8nJegE4u4dds
+    keycloakClientSecret: <keycloak_client_secret> 
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -83,7 +83,7 @@ postgresql:
     tag: "15-alpine" # Specify desired PostgreSQL version
   auth:
     username: resource_management
-    password: t0DJ838Vf8TfJAg
+    password: <db_password> # Set a secure password for the PostgreSQL user
     database: reservationdb # Default database name
   persistence:
     enabled: true
