@@ -6,7 +6,7 @@ data:
   # Application Configuration
   SERVER_PORT: {{ .Values.be.containerPort | quote }}
   
-  DB_URL: {{ include "resource-management.database.url" . }}
+  DB_URL: {{ include "prognose.database.url" . }}
   
   # Keycloak Configuration  
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}

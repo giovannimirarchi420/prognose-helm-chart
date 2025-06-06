@@ -1,7 +1,7 @@
 {{/*
 Helper to generate the database URL.
 */}}
-{{- define "resource-management.database.url" -}}
+{{- define "prognose.database.url" -}}
 {{- if .Values.postgresql.enabled -}}
 {{- printf "jdbc:postgresql://%s-postgres-service:%d/%s" .Release.Name 5432 .Values.postgresql.auth.database -}}
 {{- else -}}
@@ -12,7 +12,7 @@ Helper to generate the database URL.
 {{/*
 Helper to generate the database username.
 */}}
-{{- define "resource-management.database.username" -}}
+{{- define "prognose.database.username" -}}
 {{- if .Values.postgresql.enabled -}}
 {{- .Values.postgresql.auth.username | b64enc | quote -}}
 {{- else -}}
@@ -23,7 +23,7 @@ Helper to generate the database username.
 {{/*
 Helper to generate the database password.
 */}}
-{{- define "resource-management.database.password" -}}
+{{- define "prognose.database.password" -}}
 {{- if .Values.postgresql.enabled -}}
 {{- .Values.postgresql.auth.password | b64enc | quote -}}
 {{- else -}}
@@ -34,9 +34,9 @@ Helper to generate the database password.
 {{/*
 Common labels
 Usage:
-{{ include "resource-management.labels" (dict "context" . "component" "backend") }}
+{{ include "prognose.labels" (dict "context" . "component" "backend") }}
 */}}
-{{- define "resource-management.labels" -}}
+{{- define "prognose.labels" -}}
 helm.sh/chart: {{ printf "%s-%s" .context.Chart.Name .context.Chart.Version | quote }}
 app.kubernetes.io/name: {{ .context.Chart.Name }}
 app.kubernetes.io/instance: {{ .context.Release.Name }}
@@ -49,9 +49,9 @@ app.kubernetes.io/component: {{ .component }}
 {{/*
 Selector labels
 Usage:
-{{ include "resource-management.selectorLabels" (dict "context" . "component" "backend") }}
+{{ include "prognose.selectorLabels" (dict "context" . "component" "backend") }}
 */}}
-{{- define "resource-management.selectorLabels" -}}
+{{- define "prognose.selectorLabels" -}}
 app.kubernetes.io/name: {{ .context.Chart.Name }}
 app.kubernetes.io/instance: {{ .context.Release.Name }}
 {{- if .component }}

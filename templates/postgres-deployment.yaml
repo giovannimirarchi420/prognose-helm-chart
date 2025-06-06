@@ -4,16 +4,16 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-postgres
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "resource-management.selectorLabels" (dict "context" . "component" "postgresql") | nindent 6 }}
+      {{- include "prognose.selectorLabels" (dict "context" . "component" "postgresql") | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "resource-management.selectorLabels" (dict "context" . "component" "postgresql") | nindent 8 }}
+        {{- include "prognose.selectorLabels" (dict "context" . "component" "postgresql") | nindent 8 }}
     spec:
       containers:
         - name: postgresql

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-fe-ingress
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "frontend") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "frontend") | nindent 4 }}
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
@@ -22,4 +22,4 @@ spec:
   tls:
     - hosts:
         - {{ .Values.fe.ingress.host }}
-      secretName: resource-management-fe-ingress-tls
+      secretName: prognose-fe-ingress-tls

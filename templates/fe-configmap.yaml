@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-fe-config # Corrected name templating
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "frontend") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "frontend") | nindent 4 }}
 data:
   REACT_APP_API_URL: "https://{{ .Values.be.ingress.host }}{{ .Values.be.ingress.path }}"
   REACT_APP_KEYCLOAK_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}

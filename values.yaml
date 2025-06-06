@@ -1,4 +1,4 @@
-app: resource-management
+app: prognose
 be:
   replicaCount: 1
   image:
@@ -13,15 +13,15 @@ be:
     # dbUrl: "<db_url>" # Example Oracle: jdbc:oracle:thin:@//host:port/service_name, 
     # Example Postgres: jdbc:postgresql://host:port/database
     keycloakAuthServerUrl: https://auth.crownlabs.polito.it/auth
-    keycloakRealm: resource-management
-    keycloakClientId: resource-management-app
+    keycloakRealm: prognose
+    keycloakClientId: prognose-app
   secrets:
     # Provide dbUser and dbPassword only if postgresql.enabled is set to false, as the application will not deploy its own PostgreSQL instance.
     # dbUser: <db_username>
     # dbPassword: <db_password>
     keycloakClientSecret: <keycloak_client_secret>
   ingress:
-    host: resource-management.crownlabs.polito.it
+    host: prognose.crownlabs.polito.it
     path: /api
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -40,9 +40,9 @@ fe:
     repository: docker.io/g420/resource-management-frontend
     tag: 1.4.8 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
-    keycloakClientId: resource-management-fe
+    keycloakClientId: prognose-fe
   ingress:
-    host: resource-management.crownlabs.polito.it
+    host: prognose.crownlabs.polito.it
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -61,7 +61,7 @@ eventProcessor:
     tag: 0.1.11-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
   containerPort: 8080
   config:
-    keycloakClientId: resource-management-app
+    keycloakClientId: prognose-app
   secrets:
     keycloakClientSecret: <keycloak_client_secret>
   resources: {}
@@ -82,9 +82,9 @@ postgresql:
     repository: postgres
     tag: "15-alpine" # Specify desired PostgreSQL version
   auth:
-    username: resource_management
+    username: prognose_user
     password: <db_password> # Set a secure password for the PostgreSQL user
-    database: reservationdb # Default database name
+    database: prognosedb # Default database name
   persistence:
     enabled: true
     storageClass: rook-ceph-block # Specify storage class or leave empty for default

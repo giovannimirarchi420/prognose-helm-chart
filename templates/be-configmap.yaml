@@ -3,14 +3,14 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-be-config
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "backend") | nindent 4 }}
 data:
   # Application Configuration
   SERVER_PORT: {{ .Values.be.containerPort | quote }}
   
   # Database Configuration
   DB_TYPE: {{ .Values.be.config.databaseType | quote }}
-  DB_URL: {{ include "resource-management.database.url" . }}
+  DB_URL: {{ include "prognose.database.url" . }}
   
   # Keycloak Configuration  
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}

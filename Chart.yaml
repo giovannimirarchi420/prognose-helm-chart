@@ -1,6 +1,6 @@
 apiVersion: v2
-name: resource-management
-description: A Helm chart for Kubernetes resource management application
+name: prognose
+description: A Helm chart for Kubernetes prognose application
 
 # Chart version
 version: 0.2.0

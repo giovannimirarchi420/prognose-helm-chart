@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-be
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "backend") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "backend") | nindent 4 }}
 spec:
   replicas: {{ .Values.be.replicaCount }}
   selector:
     matchLabels:
-      {{- include "resource-management.selectorLabels" (dict "context" . "component" "backend") | nindent 6 }}
+      {{- include "prognose.selectorLabels" (dict "context" . "component" "backend") | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "resource-management.selectorLabels" (dict "context" . "component" "backend") | nindent 8 }}
+        {{- include "prognose.selectorLabels" (dict "context" . "component" "backend") | nindent 8 }}
     spec:
       containers:
         - name: backend

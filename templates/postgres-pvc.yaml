@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}-postgres-pvc
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteOnce

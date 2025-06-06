@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}-postgres-service
   labels:
-    {{- include "resource-management.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
+    {{- include "prognose.labels" (dict "context" . "component" "postgresql") | nindent 4 }}
 spec:
   type: ClusterIP
   ports:
@@ -13,5 +13,5 @@ spec:
       protocol: TCP
       name: postgresql
   selector:
-    {{- include "resource-management.selectorLabels" (dict "context" . "component" "postgresql") | nindent 4 }}
+    {{- include "prognose.selectorLabels" (dict "context" . "component" "postgresql") | nindent 4 }}
 {{- end }}
