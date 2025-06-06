@@ -1,4 +1,4 @@
-# Resource Management Helm Chart
+# Prognose Helm Chart
 
 This Helm chart deploys a resource management application consisting of a backend service, frontend service, and an event processor service. It also provides the option to deploy a PostgreSQL database instance alongside the application or connect to an external database (PostgreSQL or Oracle).
 
