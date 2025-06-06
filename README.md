@@ -34,7 +34,7 @@ The chart includes the following files:
 To install the chart, use the following command:
 
 ```bash
-helm install <release-name> ./resource-management-chart
+helm install <release-name> ./prognose-helm-chart
 ```
 
 Replace `<release-name>` with your desired release name.
