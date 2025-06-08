@@ -58,7 +58,7 @@ eventProcessor:
   replicaCount: 1
   image:
     repository: docker.io/g420/reservation-event-processor
-    tag: 0.1.11-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
+    tag: 0.1.12-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/reservation-event-processor/general) 
   containerPort: 8080
   config:
     keycloakClientId: prognose-app
