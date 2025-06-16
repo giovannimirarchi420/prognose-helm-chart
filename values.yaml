@@ -3,7 +3,7 @@ be:
   replicaCount: 1
   image:
     repository: docker.io/g420/prognose-backend
-    tag: 1.8.38-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
+    tag: 1.8.39-postgres # Specify desired backend image version (https://hub.docker.com/repository/docker/g420/resource-management-backend/general)
   containerPort: 8080
   config:
     # If using PostgreSQL, use the -postgresql image
