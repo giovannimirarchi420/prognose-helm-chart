@@ -42,7 +42,7 @@ fe:
   config:
     keycloakClientId: prognose-fe
     # URL for the official documentation - leave empty to hide documentation menu item
-    documentationUrl: "https://docs.example.com" # Example: https://docs.prognose.example.com
+    documentationUrl: "https://docs.prognose.crownlabs.polito.it/" # Example: https://docs.prognose.example.com
   ingress:
     host: prognose.crownlabs.polito.it
   resources: {}
