@@ -41,8 +41,6 @@ fe:
     tag: 1.5.8 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
     keycloakClientId: prognose-fe
-    # URL for the official documentation - leave empty to hide documentation menu item
-    documentationUrl: "https://docs.prognose.crownlabs.polito.it/" # Example: https://docs.prognose.example.com
   ingress:
     host: prognose.crownlabs.polito.it
   resources: {}
