@@ -65,6 +65,9 @@ Key configuration sections in `values.yaml`:
 *   **`fe` (Frontend)**:
     *   `replicaCount`: Number of frontend pods.
     *   `image`: Frontend container image repository and tag.
+    *   `config`: Frontend application configuration.
+        *   `keycloakClientId`: Keycloak client ID for frontend authentication.
+        *   `documentationUrl`: URL for the official documentation. Leave empty to hide the documentation menu item in the application.
     *   `ingress`: Ingress configuration (host).
     *   `resources`: CPU/Memory resource limits and requests.
 *   **`eventProcessor`**:

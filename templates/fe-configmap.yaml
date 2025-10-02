@@ -9,4 +9,5 @@ data:
   REACT_APP_KEYCLOAK_URL: {{ .Values.be.config.keycloakAuthServerUrl | quote }}
   REACT_APP_KEYCLOAK_REALM: {{ .Values.be.config.keycloakRealm | quote }}
   REACT_APP_KEYCLOAK_CLIENT_ID: {{ .Values.fe.config.keycloakClientId | quote }}
+  REACT_APP_DOCUMENTATION_URL: {{ .Values.fe.config.documentationUrl | quote }}
   NODE_ENV: "production"
