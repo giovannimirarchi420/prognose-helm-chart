@@ -38,7 +38,7 @@ fe:
   replicaCount: 1
   image:
     repository: docker.io/g420/prognose-frontend
-    tag: 1.5.10 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
+    tag: 1.5.11 # Specify desired frontend image version (https://hub.docker.com/repository/docker/g420/resource-management-frontend/general)
   config:
     keycloakClientId: prognose-fe
   ingress:
